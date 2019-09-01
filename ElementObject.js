@@ -1,4 +1,4 @@
-class Element {
+class ElementObject {
 
     // Constructor.
     constructor(currentTemp, heatConstant) {
@@ -12,7 +12,7 @@ class Element {
 
         // Declare colour.
         var blue = 255;
-        var colour = "fill:rgb(0,0,"+blue+")";
+        var colour = "fill:rgb(0,0," + blue + ")";
 
         // Create svg element.
         var svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -33,10 +33,32 @@ class Element {
 
     }
 
+    getScreenWidth() {
+        var element1 = document.getElementById("body")
+        element1 = element1.clientWidth;
+        console.log(element1);
+        window.addEventListener("resize", getScreenWidth);
+
+    }
+
+    test() {
+        console.log("test");
+    }
+
 }
 
-for (i = 0; i < screen.height; i++) {
-        const element = new Element();
-        element.drawElement(55, 55);
+// Draw rectangles.
+for (i = 0; i < screen.width; i++) {
+    console.log(screen.width);
+    const element = new ElementObject();
+    element.drawElement(55, 55);
 }
 
+// Get points.
+function getCoordinates(event) {
+    console.log("X: " + event.clientX);
+    console.log("Y: " + event.clientY);
+}
+
+// Event Handlers.
+document.addEventListener("click", getCoordinates);
